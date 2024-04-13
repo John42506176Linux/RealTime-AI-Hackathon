@@ -27,6 +27,7 @@ from dailyai.services.elevenlabs_ai_service import ElevenLabsTTSService
 from runner import configure
 
 from dotenv import load_dotenv
+
 load_dotenv(override=True)
 
 logging.basicConfig(format=f"%(levelno)s %(asctime)s %(message)s")
@@ -110,12 +111,12 @@ async def main(room_url: str, token):
         tts = ElevenLabsTTSService(
             aiohttp_session=session,
             api_key=os.getenv("ELEVENLABS_API_KEY"),
-            voice_id="pNInz6obpgDQGcFmaJgB",
+            voice_id="UOyYnSAKTH4kvSDPUHa0",
         )
 
         llm = OpenAILLMService(
-            api_key=os.getenv("OPENAI_API_KEY"),
-            model="gpt-4-turbo-preview")
+            api_key=os.getenv("OPENAI_API_KEY"), model="gpt-4-turbo-preview"
+        )
 
         ta = TalkingAnimation()
         ai = AnimationInitializer()
@@ -123,7 +124,7 @@ async def main(room_url: str, token):
         messages = [
             {
                 "role": "system",
-                "content": "You are Chatbot, a friendly, helpful robot. Your goal is to demonstrate your capabilities in a succinct way. Your output will be converted to audio so don't include special characters in your answers. Respond to what the user said in a creative and helpful way, but keep your responses brief. Start by introducing yourself.",
+                "content": "You are Dreamweaver, a friendly, helpful dream interpreter. Your goal is to demonstrate your capabilities for dream interpretation in a succinct way. Your output will be converted to audio so don't include special characters in your answers. When the user describes their dream, ask follow-up questions and provide succinct metaphorical dream interpretations. Start by introducing yourself. Use a quirky, mystical tone of voice.",
             },
         ]
 
